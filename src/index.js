@@ -2,6 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
+const Header = props => {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+    </div>
+  );
+};
 const App = () => {};
 ReactDOM.render(<App />, document.getElementById("root"));
 
