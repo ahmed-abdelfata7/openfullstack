@@ -9,8 +9,46 @@ const Header = props => {
     </div>
   );
 };
+const Part = props => {
+  return (
+    <div>
+      <p>
+        {props.title} {props.numOfExercises}
+      </p>
+    </div>
+  );
+};
+const Content = () => {
+  let firstPart = "Fundamentals of React";
+  let firstPartEx = 10;
+  let secondPart = "Using props to pass data";
+  let secondPartEx = 7;
+  let thirdPart = "State of a component";
+  let thirdPartEx = 14;
+  const Total = () => {
+    return (
+      <>
+        <p>Total : {firstPartEx + secondPartEx + thirdPartEx}</p>
+      </>
+    );
+  };
+  return (
+    <>
+      <Part title={firstPart} numOfExercises={firstPartEx} />
+      <Part title={secondPart} numOfExercises={secondPartEx} />
+      <Part title={thirdPart} numOfExercises={thirdPartEx} />
+      <Total />
+    </>
+  );
+};
+
 const App = () => {
-  return <Header title="Half Stack application development" />;
+  return (
+    <div>
+      <Header title="Half Stack application development" />
+      <Content />
+    </div>
+  );
 };
 ReactDOM.render(<App />, document.getElementById("root"));
 
