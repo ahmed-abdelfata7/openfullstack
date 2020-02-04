@@ -19,33 +19,39 @@ const Part = props => {
   );
 };
 const Content = () => {
-  let firstPart = {
-    title: "Fundamentals of React",
-    exercise: 10
-  };
-  let secondPart = {
-    title: "Using props to pass data",
-    exercise: 7
-  };
-  let thirdPart = {
-    title: "State of a component",
-    exercise: 14
-  };
+  const contents = [
+    {
+      title: "Fundamentals of React",
+      exercise: 10
+    },
+    {
+      title: "Using props to pass data",
+      exercise: 7
+    },
+    {
+      title: "State of a component",
+      exercise: 14
+    }
+  ];
 
   const Total = () => {
     return (
       <>
         <p>
-          Total :{firstPart.exercise + secondPart.exercise + thirdPart.exercise}
+          Total :
+          {contents.reduce((prev, curr, index, arr) => {
+            return prev + curr;
+          }, 0)}
         </p>
       </>
     );
   };
+  let result = contents.map(element => {
+    return <Part title={element.title} numOfExercises={element.exercise} />;
+  });
   return (
     <>
-      <Part title={firstPart.title} numOfExercises={firstPart.exercise} />
-      <Part title={secondPart.title} numOfExercises={secondPart.exercise} />
-      <Part title={thirdPart.title} numOfExercises={thirdPart.exercise} />
+      {result}
       <Total />
     </>
   );
