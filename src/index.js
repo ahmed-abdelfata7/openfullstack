@@ -19,24 +19,33 @@ const Part = props => {
   );
 };
 const Content = () => {
-  let firstPart = "Fundamentals of React";
-  let firstPartEx = 10;
-  let secondPart = "Using props to pass data";
-  let secondPartEx = 7;
-  let thirdPart = "State of a component";
-  let thirdPartEx = 14;
+  let firstPart = {
+    title: "Fundamentals of React",
+    exercise: 10
+  };
+  let secondPart = {
+    title: "Using props to pass data",
+    exercise: 7
+  };
+  let thirdPart = {
+    title: "State of a component",
+    exercise: 14
+  };
+
   const Total = () => {
     return (
       <>
-        <p>Total : {firstPartEx + secondPartEx + thirdPartEx}</p>
+        <p>
+          Total :{firstPart.exercise + secondPart.exercise + thirdPart.exercise}
+        </p>
       </>
     );
   };
   return (
     <>
-      <Part title={firstPart} numOfExercises={firstPartEx} />
-      <Part title={secondPart} numOfExercises={secondPartEx} />
-      <Part title={thirdPart} numOfExercises={thirdPartEx} />
+      <Part title={firstPart.title} numOfExercises={firstPart.exercise} />
+      <Part title={secondPart.title} numOfExercises={secondPart.exercise} />
+      <Part title={thirdPart.title} numOfExercises={thirdPart.exercise} />
       <Total />
     </>
   );
