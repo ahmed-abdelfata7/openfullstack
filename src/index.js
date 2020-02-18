@@ -6,15 +6,23 @@ import * as serviceWorker from "./serviceWorker";
 const notes = [
   {
     id: 1,
-    title: "First note"
+    title: "First note",
+    important: true
   },
   {
     id: 2,
-    title: "Second note"
+    title: "Second note",
+    important: false
   },
   {
     id: 3,
-    title: "Third note"
+    title: "Third note",
+    important: false
+  },
+  {
+    id: 4,
+    title: "Forth note",
+    important: true
   }
 ];
 ReactDOM.render(<App notes={notes} />, document.getElementById("root"));
