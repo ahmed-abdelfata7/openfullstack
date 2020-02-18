@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Contact from "./components/Contact";
+const checkExistance = (array, name) => {
+  return array.includes(name);
+};
 const App = () => {
   const [persons, setPerson] = useState([{ name: "Ahmed Mahmoud" }]);
   const [name, setName] = useState("");
@@ -9,9 +12,18 @@ const App = () => {
   const saveContact = event => {
     event.preventDefault();
     let newName = name;
-    let newContacts = persons.concat({ name: newName });
-    setPerson(newContacts);
-    setName("");
+    const personsArr = persons.map(element => {
+      return element.name;
+    });
+    let check = checkExistance(personsArr, newName);
+    console.log(check);
+    if (check) {
+      alert(`${newName} already exist`);
+    } else {
+      let newContacts = persons.concat({ name: newName });
+      setPerson(newContacts);
+      setName("");
+    }
   };
   const saveName = event => {
     let newName = event.target.value;
