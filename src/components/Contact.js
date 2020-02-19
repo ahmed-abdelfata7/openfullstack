@@ -1,5 +1,9 @@
 import React from "react";
-const Contact = ({ name }) => {
-  return <li>{name}</li>;
+const Contact = ({ name, number }) => {
+  return (
+    <li>
+      {name} | {number}
+    </li>
+  );
 };
 export default Contact;
