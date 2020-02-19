@@ -42,9 +42,23 @@ const App = () => {
     let newNumber = event.target.value;
     setNumber(newNumber);
   };
+  const search = event => {
+    //keyword
+    let keyword = event.target.value;
+    let regex = new RegExp(keyword, "gi");
+    console.log(regex);
+
+    //filter by matching name with keyword
+    const matchedResult = persons.filter(person => {
+      console.log(regex.test(person.name));
+      return regex.test(person.name);
+    });
+    setPerson(matchedResult);
+  };
   return (
     <div>
       <h1>Phone book</h1>
+      filter shown with <input onChange={search} />
       <form onSubmit={saveContact}>
         <div>
           <label>Name</label>
