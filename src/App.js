@@ -9,7 +9,13 @@ const App = () => {
   ]);
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-  const allPersons = persons.map(person => {
+  const [searchResult, setSearchResult] = useState([]);
+  const AllPersons = persons.map(person => {
+    return (
+      <Contact name={person.name} key={person.name} number={person.number} />
+    );
+  });
+  const AllSearchResult = searchResult.map(person => {
     return (
       <Contact name={person.name} key={person.name} number={person.number} />
     );
@@ -42,23 +48,19 @@ const App = () => {
     let newNumber = event.target.value;
     setNumber(newNumber);
   };
-  const search = event => {
-    //keyword
+  const searchService = event => {
     let keyword = event.target.value;
     let regex = new RegExp(keyword, "gi");
-    console.log(regex);
-
-    //filter by matching name with keyword
     const matchedResult = persons.filter(person => {
-      console.log(regex.test(person.name));
-      return regex.test(person.name);
+      return person.name.match(regex);
     });
-    setPerson(matchedResult);
+    console.log(matchedResult);
+    setSearchResult(matchedResult);
   };
   return (
     <div>
       <h1>Phone book</h1>
-      filter shown with <input onChange={search} />
+      filter shown with <input onChange={searchService} />
       <form onSubmit={saveContact}>
         <div>
           <label>Name</label>
@@ -71,7 +73,7 @@ const App = () => {
         </div>
       </form>
       <h1>Numbers</h1>
-      <ul>{allPersons}</ul>
+      <ul>{searchResult.length === 0 ? AllPersons : AllSearchResult}</ul>
     </div>
   );
 };
