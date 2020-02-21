@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Contact from "./components/Contact";
 import Filter from "./components/Filter";
+import Form from "./components/Form";
 const checkExistance = (array, name) => {
   return array.includes(name);
 };
@@ -64,19 +65,14 @@ const App = () => {
     <div>
       <h1>Phone book</h1>
       <Filter searchService={searchService} />
-      <form onSubmit={saveContact}>
-        <div>
-          <label>Name</label>
-          <input value={name} onChange={saveName} />
-          <label>Number</label>
-          <input value={number} onChange={saveNumber} />
-        </div>
-        <div>
-          <button type="submit">Save</button>
-        </div>
-      </form>
+      <Form
+        saveNumber={saveNumber}
+        saveContact={saveContact}
+        name={name}
+        number={number}
+        saveName={saveName}
+      />
       <h1>Numbers</h1>
-      {console.log("SearchResult", searchResult.length)}
       <ul>{search.length > 0 ? AllSearchResult : AllPersons}</ul>
     </div>
   );
