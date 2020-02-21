@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Contact from "./components/Contact";
+import Filter from "./components/Filter";
 const checkExistance = (array, name) => {
   return array.includes(name);
 };
@@ -10,6 +11,7 @@ const App = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const [search, setSearch] = useState("");
   const AllPersons = persons.map(person => {
     return (
       <Contact name={person.name} key={person.name} number={person.number} />
@@ -50,6 +52,7 @@ const App = () => {
   };
   const searchService = event => {
     let keyword = event.target.value;
+    setSearch(keyword);
     let regex = new RegExp(keyword, "gi");
     const matchedResult = persons.filter(person => {
       return person.name.match(regex);
@@ -60,7 +63,7 @@ const App = () => {
   return (
     <div>
       <h1>Phone book</h1>
-      filter shown with <input onChange={searchService} />
+      <Filter searchService={searchService} />
       <form onSubmit={saveContact}>
         <div>
           <label>Name</label>
@@ -73,7 +76,8 @@ const App = () => {
         </div>
       </form>
       <h1>Numbers</h1>
-      <ul>{searchResult.length === 0 ? AllPersons : AllSearchResult}</ul>
+      {console.log("SearchResult", searchResult.length)}
+      <ul>{search.length > 0 ? AllSearchResult : AllPersons}</ul>
     </div>
   );
 };
